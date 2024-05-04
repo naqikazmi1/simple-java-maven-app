@@ -29,3 +29,10 @@ jobs:
     - name: Run tests
       run: mvn -B test --file pom.xml
 
+    - name: Create Pull Request
+      if: success()
+      run: |
+        TOKEN="${{ secrets.GITHUB_TOKEN }}"
+        REPO="${{ github.repository }}"
+        BRANCH="${{ github.ref }}"
+        curl -X POST -H "Authorization: token $TOKEN" -d "{\"title\":\"Automated Pull Request\",\"head\":\"$BRANCH\",\"base\":\"main\",\"body\":\"Automated pull request created upon successful build and test.\"}" "https://api.github.com/repos/$REPO/pulls"
