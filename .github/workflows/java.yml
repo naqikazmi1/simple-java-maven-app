@@ -35,4 +35,4 @@ jobs:
         TOKEN="${{ secrets.GITHUB_TOKEN }}"
         REPO="${{ github.repository }}"
         BRANCH="${{ github.ref }}"
-        curl -X POST -H "Authorization: token $TOKEN" -d "{\"title\":\"Automated Pull Request\",\"head\":\"$BRANCH\",\"base\":\"master\",\"body\":\"Automated pull request created upon successful build and test.\"}" "https://api.github.com/repos/$REPO/pulls"
+        curl -X POST -H "Authorization: token $TOKEN" -d "{\"title\":\"Automated Pull Request\",\"head\":\"$BRANCH\",\"base\":\"master\",\"body\":\"All checks have passed. This pull request is ready to be merged.\"}" "https://api.github.com/repos/$REPO/pulls"
