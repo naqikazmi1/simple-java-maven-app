@@ -34,6 +34,7 @@ jobs:
       run: |
         git config --global user.email "naqikazmi65@gmail.com"
         git config --global user.name "naqikazmi1"
+        git branch -v
         git add pom.xml
         git commit -m "version updated"
         git push origin test 
