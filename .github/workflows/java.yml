@@ -14,12 +14,7 @@ jobs:
 
     - name: Merge latest code
       run: |
-        git init
-        git remote add origin https://github.com/Hamzakhalid0/simple-java-maven-app.git
-        git branch -v
-        git checkout test
-        git fetch origin master
-        git merge origin master
+        git merge origin/master --no-edit
             
     - name: Checkout repository
       uses: actions/checkout@v4
