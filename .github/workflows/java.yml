@@ -10,12 +10,7 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    steps:
-
-    - name: Merge latest code
-      run: |
-        git merge origin/master --no-edit
-            
+    steps:           
     - name: Checkout repository
       uses: actions/checkout@v4
 
