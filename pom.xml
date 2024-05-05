@@ -16,7 +16,7 @@
     </dependency>
   </dependencies>
   <properties>
-      <fmwk.version>1.7.0</fmwk.version>
+    <fmwk.version>1.7.0</fmwk.version>
   </properties>
   <build>
     <pluginManagement>
