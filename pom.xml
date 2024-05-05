@@ -16,7 +16,7 @@
     </dependency>
   </dependencies>
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <fmwk.version>1.7.0</fmwk.version>
   </properties>
   <build>
     <pluginManagement>
