@@ -13,8 +13,11 @@ jobs:
     steps:
 
     - name: Merge latest code
-      run: git pull origin master 
-      
+      run: |
+        git init
+        git remote add origin https://github.com/Hamzakhalid0/simple-java-maven-app.git
+        git pull origin master 
+            
     - name: Checkout repository
       uses: actions/checkout@v2
 
@@ -26,6 +29,12 @@ jobs:
 
     - name: Update pom.xml
       run: mvn versions:update-properties -Dproperty="fmwk.version" -DnewVersion="1.9.0"
+
+    # - name: Push changes
+    #   run: |
+    #     git add pom.xml
+    #     git commit -m "version updated"
+    #     git push origin test 
 
     - name: Create Pull Request
       run: |
