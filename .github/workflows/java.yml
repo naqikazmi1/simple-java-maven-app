@@ -16,6 +16,7 @@ jobs:
 
     - name: Merge latest code
       run: |
+        git fetch origin master
         git merge origin/master --no-edit
 
     - name: Set up JDK 11
