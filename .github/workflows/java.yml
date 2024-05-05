@@ -16,7 +16,8 @@ jobs:
       run: |
         git init
         git remote add origin https://github.com/Hamzakhalid0/simple-java-maven-app.git
-        git pull origin master 
+        git fetch origin master
+        git merge origin master
             
     - name: Checkout repository
       uses: actions/checkout@v4
