@@ -14,6 +14,9 @@
       <version>4.13.2</version>
       <scope>test</scope>
     </dependency>
+    <properties>
+        <fmwk.version>1.7.0</fmwk.version>
+    </properties>
   </dependencies>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
