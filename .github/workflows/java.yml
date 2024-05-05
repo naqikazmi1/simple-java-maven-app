@@ -30,11 +30,11 @@ jobs:
     - name: Update pom.xml
       run: mvn versions:update-properties -Dproperty="fmwk.version" -DnewVersion="1.9.0"
 
-    # - name: Push changes
-    #   run: |
-    #     git add pom.xml
-    #     git commit -m "version updated"
-    #     git push origin test 
+    - name: Push changes
+      run: |
+        git add pom.xml
+        git commit -m "version updated"
+        git push origin test 
 
     - name: Create Pull Request
       run: |
@@ -47,13 +47,11 @@ jobs:
       run: mvn -B test --file pom.xml
 
     - name: Generate Test Reports
-      run: mvn surefire-report:report 
+      run: mvn surefire-report:report > test.txt
 
     - name: Comment on Pull Request
-      run: |
-        TOKEN="${{ secrets.GITHUB_TOKEN }}"
-        REPO="${{ github.repository }}"
-        PR_NUMBER="${{ github.event.pull_request.number }}"
-        COMMENT="Test reports have been generated."
-        curl -X POST -H "Authorization: token $TOKEN" -d "{\"body\":\"$COMMENT\"}" "https://api.github.com/repos/$REPO/issues/$PR_NUMBER/comments"
+      uses: mshick/add-pr-comment@v2
+      with:
+        message-path: |
+          test.txt
 
