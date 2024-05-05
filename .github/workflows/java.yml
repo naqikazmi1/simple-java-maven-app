@@ -11,6 +11,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+    - name: Merge latest code
+      run: git pull origin master 
+      
     - name: Checkout repository
       uses: actions/checkout@v2
 
@@ -21,7 +25,7 @@ jobs:
         distribution: 'adopt'
 
     - name: Update pom.xml
-      run: mvn versions:set -DnewVersion=1.0.1
+      run: mvn versions:update-properties -Dproperty="fmwk.version" -DnewVersion="1.9.0"
 
     - name: Create Pull Request
       run: |
@@ -35,4 +39,12 @@ jobs:
 
     - name: Generate Test Reports
       run: mvn surefire-report:report 
-      
+
+    - name: Comment on Pull Request
+      run: |
+        TOKEN="${{ secrets.GITHUB_TOKEN }}"
+        REPO="${{ github.repository }}"
+        PR_NUMBER="${{ github.event.pull_request.number }}"
+        COMMENT="Test reports have been generated."
+        curl -X POST -H "Authorization: token $TOKEN" -d "{\"body\":\"$COMMENT\"}" "https://api.github.com/repos/$REPO/issues/$PR_NUMBER/comments"
+          
